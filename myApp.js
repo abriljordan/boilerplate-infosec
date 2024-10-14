@@ -1,13 +1,19 @@
-const helmet = require('helmet');
 const express = require('express');
+const helmet = require('helmet');
 const app = express();
 
-// Mount helmet.xssFilter middleware
-app.use(helmet.xssFilter());
+// Use helmet for security
+app.use(helmet());
 
-// Your routes
-app.get('/', function(req, res) {
+// Example route
+app.get('/', (req, res) => {
   res.send('Hello world');
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
 module.exports = app;
